@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="row">
     <div class="col s6">
-      <QRcode></QRcode>
+      <QRcode @qrCodeOK="onAddQRcode"></QRcode>
        </div>
        <div class="col s6">
       <QRcodeList></QRcodeList>
@@ -15,21 +15,6 @@
 import QRcode from './components/QRcode'
 import QRcodeList from './components/QRcodeList'
 
-import Vue from 'vue'
-var bus = new Vue()
-bus.$on('qrcode-A', function (id) {
- console.log(id)
-})
-bus.$on('qrcode-B', function (id) {
- console.log(id)
-})
-
-
-
-
-
-
-
 
 
 
@@ -39,12 +24,9 @@ export default {
     QRcode,
     QRcodeList
   },
-  events:{
-    'qrcode-A' : function(val){
-      console.log("qrcode-A",val)
-    },
-    'qrcode-B' : function(val){
-      console.log("qrcode-B",val)
+  methods:{
+    onAddQRcode(data){
+      console.log("AAoe", data)
     }
   }
 }

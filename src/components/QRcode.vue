@@ -6,7 +6,7 @@
       <input v-model="QRcodeText" 
       placeholder="Escreva alguma coisa e de Ok para adicionar à lista" 
       id="first_name" type="text" class="validate">
-
+      <a @click="$emit('qrCodeOK', QRcodeText )" class="waves-effect waves-light btn">OK</a>
     </div>
 
 
@@ -24,7 +24,6 @@ export default {
     return {
       msg: 'Hello Vue!',
       QRcodeText:''
-    
     }
   },
   watch: {
@@ -33,12 +32,6 @@ export default {
           element: document.getElementById('qrcode'),
           value: val
         })
-      //send this to parent(or to another component at the same level)
-      
-      this.$emit('qrcode-A', val)
-
-      this.$parent.$emit('qrcode-B', val);
-    
     }
   }
 }
