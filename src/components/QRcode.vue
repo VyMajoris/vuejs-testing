@@ -16,7 +16,6 @@
 
 <script>
 import QRious from 'qrious'
-import Vue from 'vue'
 
 export default {
 
@@ -30,7 +29,8 @@ export default {
     'QRcodeText': function (val, oldVal) {
       new QRious({
           element: document.getElementById('qrcode'),
-          value: val
+          size: 200,
+          value: val,
         })
     }
   }

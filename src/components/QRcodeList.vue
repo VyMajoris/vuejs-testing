@@ -1,7 +1,15 @@
 <template>
 
-  <ul>
-    
+  <ul style="height:60vh;overflow:auto">
+
+    <li v-for="base64, index in ids">
+      <div>
+        <img style="cursor:pointer" v-bind:src="base64"></img>
+      </div>
+      <div>
+        <button class="waves-effect waves-light btn" @click="removeElement(index)">remover</button>
+      </div>
+    </li>
   </ul>
 
 </template>
@@ -9,24 +17,35 @@
 <script>
 import QRious from 'qrious'
 
-import Vue from 'vue'
-
+var permanentIds = 0;
 
 export default {
 
   data () {
     return {
-      qrcodes:[]
+      ids:  [
+
+      ]
     }
   },
-  events:{
-    'qrcode-A' : function(val){
-      console.log("qrcode-A",val)
-    },
-    'qrcode-B' : function(val){
-      console.log("qrcode-B",val)
-    }
-  }
+    methods:{
+      addQrCodeToList(QRcodeText){
+      console.log("At List", QRcodeText)
+
+      var qr = new QRious({
+        value: QRcodeText
+      })
+
+      var base64 = qr.toDataURL('image/jpeg');
+      this.ids.push(base64 )
+
+      },
+      removeElement(item){
+            this.ids.splice(item,1)
+      }
+  },
+
+
    
 }
 </script>

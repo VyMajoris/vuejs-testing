@@ -3,11 +3,9 @@
     <div class="col s6">
       <QRcode @qrCodeOK="onAddQRcode"></QRcode>
        </div>
-       <div class="col s6">
-      <QRcodeList></QRcodeList>
+       <div style="overflow" class="col s6">
+      <QRcodeList @editQrCode="editQrCode" ref="QRcodeList"></QRcodeList>
        </div>
-   
-  
   </div>
 </template>
 
@@ -15,7 +13,7 @@
 import QRcode from './components/QRcode'
 import QRcodeList from './components/QRcodeList'
 
-
+import Vue from 'vue'
 
 
 
@@ -25,10 +23,23 @@ export default {
     QRcodeList
   },
   methods:{
-    onAddQRcode(data){
-      console.log("AAoe", data)
+    onAddQRcode(QRcodeText){
+
+     this.$refs.QRcodeList.addQrCodeToList(QRcodeText);
+ 
+   
+    },
+    removeFromList(index){
+      console.log("remove0",index)
+        this.$refs.QRcodeList.todos.splice(index, 1)
+    },
+    editQrCode(qr){
+        let {index, base64} = qr
+       
+
     }
-  }
+  },
+  
 }
 </script>
 
